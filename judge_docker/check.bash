@@ -51,7 +51,7 @@ else
 fi
 
 # Check for Python3.8 version
-if python3.8 --version >/dev/null 2>&1; then
+if python3 --version >/dev/null 2>&1; then
   print_message "Python3 version: $(python3 --version | head -n1)" "Python3 版本: $(python3 --version | head -n1)"
 else
   print_message "Python3 not installed" "Python3 未安装"
