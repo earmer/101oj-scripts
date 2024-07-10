@@ -80,7 +80,7 @@ fi
 
 # Check for Free Pascal Compiler version
 if fpc -v >/dev/null 2>&1; then
-  print_message "Free Pascal Compiler version: $(fpc -v | head -n1)" "Free Pascal 编译器版本: $(fpc -v | head -n1)"
+  print_message "Free Pascal Compiler version: $(fpc -h | head -n1)" "Free Pascal 编译器版本: $(fpc -v | head -n1)"
 else
   print_message "Free Pascal Compiler not installed" "Free Pascal 编译器未安装"
 fi
