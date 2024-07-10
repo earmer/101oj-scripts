@@ -27,7 +27,8 @@ install_dependencies() {
         libmpfr-dev \
         libmpc-dev \
         flex \
-        bison
+        bison \
+        git
 }
 
 install_gcc() {
