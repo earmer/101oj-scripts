@@ -60,6 +60,8 @@ install_python() {
     if [ "$execute" == "y" ]; then
         echo "$MSG_INSTALLING_PYTHON"
         apt install -y python3
+        apt install -y python3-pip
+        pip3 install numpy -i https://pypi.tuna.tsinghua.edu.cn/simple
     fi
 }
 
@@ -115,8 +117,8 @@ case $lang in
         MSG_CLONE_FINISHED="Clone Finished"
         MSG_START_BUILDING="Start Making... Take a cup of tea!"
         MSG_BUILD_FINISHED="Build Finished! If the error occurs, please check your system!"
-        MSG_EXECUTE_PYTHON_INSTALLATION="Execute Python3.8 installation? (y/n) "
-        MSG_INSTALLING_PYTHON="Installing Python3.8"
+        MSG_EXECUTE_PYTHON_INSTALLATION="Execute Python3 (Numpy) installation? (y/n) "
+        MSG_INSTALLING_PYTHON="Installing Python3 (Numpy)"
         MSG_EXECUTE_OPENJDK_INSTALLATION="Execute OpenJDK 17 installation? (y/n) "
         MSG_INSTALLING_OPENJDK="Installing OpenJDK 17"
         MSG_EXECUTE_RUST_INSTALLATION="Execute Rust installation? (y/n) "
@@ -135,8 +137,8 @@ case $lang in
         MSG_CLONE_FINISHED="克隆完成"
         MSG_START_BUILDING="开始编译... 泡一杯茶吧!"
         MSG_BUILD_FINISHED="编译完成! 如果出错,请检查您的系统!"
-        MSG_EXECUTE_PYTHON_INSTALLATION="执行 Python3 安装? (y/n) "
-        MSG_INSTALLING_PYTHON="正在安装 Python3"
+        MSG_EXECUTE_PYTHON_INSTALLATION="执行 Python3 (Numpy) 安装? (y/n) "
+        MSG_INSTALLING_PYTHON="正在安装 Python3 (Numpy)"
         MSG_EXECUTE_OPENJDK_INSTALLATION="执行 OpenJDK 17 安装? (y/n) "
         MSG_INSTALLING_OPENJDK="正在安装 OpenJDK 17"
         MSG_EXECUTE_RUST_INSTALLATION="执行 Rust 安装? (y/n) "

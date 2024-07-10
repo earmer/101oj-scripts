@@ -53,6 +53,12 @@ fi
 # Check for Python3.8 version
 if python3 --version >/dev/null 2>&1; then
   print_message "Python3 version: $(python3 --version | head -n1)" "Python3 版本: $(python3 --version | head -n1)"
+  # Check for Numpy version
+  if python3 -c "import numpy" >/dev/null 2>&1; then
+    print_message "Numpy version: $(python3 -c 'import numpy; print(numpy.__version__)')" "Numpy 版本: $(python3 -c 'import numpy; print(numpy.__version__)')"
+  else
+    print_message "Numpy not installed" "Numpy 未安装"
+  fi
 else
   print_message "Python3 not installed" "Python3 未安装"
 fi
