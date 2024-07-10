@@ -1,0 +1,3 @@
+rm ./judge_docker/check.bash && wget https://mirror.ghproxy.com/https://github.com/earmer/101oj-scripts/raw/main/judge_docker/check.bash -O ./judge_docker/check.bash
+rm ./judge_docker/install.bash && wget https://mirror.ghproxy.com/https://github.com/earmer/101oj-scripts/raw/main/judge_docker/install.bash -O ./judge_docker/install.bash
+rm ./judge_docker/checkgcc.bash && wget https://mirror.ghproxy.com/https://github.com/earmer/101oj-scripts/raw/main/judge_docker/checkgcc.bash -O ./judge_docker/checkgcc.bash
