@@ -52,9 +52,9 @@ fi
 
 # Check for Python3.8 version
 if python3.8 --version >/dev/null 2>&1; then
-  print_message "Python3.8 version: $(python3.8 --version | head -n1)" "Python3.8 版本: $(python3.8 --version | head -n1)"
+  print_message "Python3 version: $(python3 --version | head -n1)" "Python3 版本: $(python3 --version | head -n1)"
 else
-  print_message "Python3.8 not installed" "Python3.8 未安装"
+  print_message "Python3 not installed" "Python3 未安装"
 fi
 
 # Check for Java version

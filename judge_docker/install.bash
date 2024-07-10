@@ -37,6 +37,7 @@ install_gcc() {
         echo "$MSG_CLONING_GCC"
         mkdir -p /usr/src/gcc && \
         cd /usr/src/gcc
+        rm -rf gcc930-oj
         git clone https://mirror.ghproxy.com/https://github.com/earmer/gcc930-oj.git
         echo "$MSG_CLONE_FINISHED"
         cd gcc930-oj
@@ -58,7 +59,7 @@ install_python() {
     read -p "$MSG_EXECUTE_PYTHON_INSTALLATION" execute
     if [ "$execute" == "y" ]; then
         echo "$MSG_INSTALLING_PYTHON"
-        apt install -y python3.8
+        apt install -y python3
     fi
 }
 
