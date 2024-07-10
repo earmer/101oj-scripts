@@ -37,7 +37,7 @@ install_gcc() {
         echo "$MSG_CLONING_GCC"
         mkdir -p /usr/src/gcc && \
         cd /usr/src/gcc
-        git clone --no-checkout https://mirror.ghproxy.com/https://github.com/earmer/gcc930-oj.git
+        git clone https://mirror.ghproxy.com/https://github.com/earmer/gcc930-oj.git
         echo "$MSG_CLONE_FINISHED"
         cd gcc930-oj
         ./contrib/download_prerequisites
