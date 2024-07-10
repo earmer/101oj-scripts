@@ -90,3 +90,10 @@ if fpc -h >/dev/null 2>&1; then
 else
   print_message "Free Pascal Compiler not installed" "Free Pascal 编译器未安装"
 fi
+
+# Check for Sandbox version
+if sandbox -version >/dev/null 2>&1; then
+  print_message "Sandbox version: $(sandbox -version | head -n1)" "沙箱版本: $(sandbox -version | head -n1)"
+else
+  print_message "Sandbox not installed" "沙箱未安装"
+fi

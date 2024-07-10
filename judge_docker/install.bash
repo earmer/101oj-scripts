@@ -59,8 +59,8 @@ install_python() {
     read -p "$MSG_EXECUTE_PYTHON_INSTALLATION" execute
     if [ "$execute" == "y" ]; then
         echo "$MSG_INSTALLING_PYTHON"
-        apt install -y python3
-        apt install -y python3-pip
+        apt install --no-install-recommends -y python3
+        apt install --no-install-recommends -y python3-pip
         pip3 install numpy -i https://pypi.tuna.tsinghua.edu.cn/simple
     fi
 }
@@ -69,7 +69,7 @@ install_openjdk() {
     read -p "$MSG_EXECUTE_OPENJDK_INSTALLATION" execute
     if [ "$execute" == "y" ]; then
         echo "$MSG_INSTALLING_OPENJDK"
-        apt install -y openjdk-17-jdk-headless
+        apt install --no-install-recommends -y openjdk-17-jdk-headless
     fi
 }
 
@@ -77,7 +77,7 @@ install_rust() {
     read -p "$MSG_EXECUTE_RUST_INSTALLATION" execute
     if [ "$execute" == "y" ]; then
         echo "$MSG_INSTALLING_RUST"
-        apt install -y rustc
+        apt install --no-install-recommends -y rustc
     fi
 }
 
@@ -85,7 +85,7 @@ install_go() {
     read -p "$MSG_EXECUTE_GO_INSTALLATION" execute
     if [ "$execute" == "y" ]; then
         echo "$MSG_INSTALLING_GO"
-        apt install -y golang
+        apt install --no-install-recommends -y golang
     fi
 }
 
@@ -93,8 +93,14 @@ install_fpc() {
     read -p "$MSG_EXECUTE_FPC_INSTALLATION" execute
     if [ "$execute" == "y" ]; then
         echo "$MSG_INSTALLING_FPC"
-        apt install -y fp-compiler
+        apt install --no-install-recommends -y fp-compiler
     fi
+}
+
+install_sandbox() {
+    echo "$MSG_INSTALLING_SANDBOX"
+    wget "https://mirror.ghproxy.com/https://github.com/criyle/go-judge/releases/download/v1.8.5/go-judge_1.8.5_linux_amd64" -O /usr/bin/sandbox
+    chmod +x /usr/bin/sandbox
 }
 
 main() {
@@ -105,6 +111,7 @@ main() {
     install_rust
     install_go
     install_fpc
+    install_sandbox
     echo "$MSG_FINISHED"
 }
 
@@ -127,6 +134,7 @@ case $lang in
         MSG_INSTALLING_GO="Installing Go"
         MSG_EXECUTE_FPC_INSTALLATION="Execute FPC installation? (y/n) "
         MSG_INSTALLING_FPC="Installing FPC"
+        MSG_INSTALLING_SANDBOX="Installing Sandbox(go-judge)"
         MSG_FINISHED="Finished!"
         ;;
     zh)
@@ -147,6 +155,7 @@ case $lang in
         MSG_INSTALLING_GO="正在安装 Go"
         MSG_EXECUTE_FPC_INSTALLATION="执行 FPC 安装? (y/n) "
         MSG_INSTALLING_FPC="正在安装 FPC"
+        MSG_INSTALLING_SANDBOX="正在安装沙箱(go-judge)"
         MSG_FINISHED="安装完成!"
         ;;
 esac
