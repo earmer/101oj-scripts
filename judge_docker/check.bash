@@ -97,3 +97,10 @@ if sandbox -version >/dev/null 2>&1; then
 else
   print_message "Sandbox not installed" "沙箱未安装"
 fi
+
+# Check for Sandbox version
+if curl "http://127.0.0.1:5050/version" >/dev/null 2>&1; then
+  print_message "Sandbox version: $(curl "http://127.0.0.1:5050/version" | head -n1)" "沙箱版本: $(curl "http://127.0.0.1:5050/version" | head -n1)"
+else
+  print_message "Sandbox service not launched succesfully" "沙箱服务未成功启动"
+fi

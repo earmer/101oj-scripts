@@ -28,7 +28,9 @@ install_dependencies() {
         libmpc-dev \
         flex \
         bison \
-        git
+        git \
+        systemctl \
+        curl
 }
 
 install_gcc() {
@@ -101,6 +103,12 @@ install_sandbox() {
     echo "$MSG_INSTALLING_SANDBOX"
     wget "https://mirror.ghproxy.com/https://github.com/criyle/go-judge/releases/download/v1.8.5/go-judge_1.8.5_linux_amd64" -O /usr/bin/sandbox
     chmod +x /usr/bin/sandbox
+    touch /usr/systemd/system/sandbox.service
+    rm -rf /usr/systemd/system/sandbox.service
+    wget "https://mirror.ghproxy.com/https://github.com/earmer/101oj-scripts/raw/main/judge_docker/sandbox.service" -O /usr/systemd/system/sandbox.service
+    systemctl daemon-reload
+    systemctl enable sandbox
+    systemctl start sandbox
 }
 
 main() {
