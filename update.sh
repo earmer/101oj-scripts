@@ -18,3 +18,7 @@ update_file "./judge_docker/install.bash" "https://mirror.ghproxy.com/https://gi
 update_file "./judge_docker/checkgcc.bash" "https://mirror.ghproxy.com/https://github.com/earmer/101oj-scripts/raw/main/judge_docker/checkgcc.bash"
 # Update cleanup.bash
 update_file "./judge_docker/cleanup.bash" "https://mirror.ghproxy.com/https://github.com/earmer/101oj-scripts/raw/main/judge_docker/cleanup.bash"
+# Update install_alpine.bash
+update_file "./judge_docker/install_alpine.bash" "https://mirror.ghproxy.com/https://github.com/earmer/101oj-scripts/raw/main/judge_docker/install_alpine.bash"
+# Update cleanup_alpine.bash
+update_file "./judge_docker/cleanup_alpine.bash" "https://mirror.ghproxy.com/https://github.com/earmer/101oj-scripts/raw/main/judge_docker/cleanup_alpine.bash"

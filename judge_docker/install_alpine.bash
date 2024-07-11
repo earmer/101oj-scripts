@@ -1,9 +1,12 @@
+#!/bin/sh
+
 set -e
 set -u
 set -o pipefail
 
 # Set the language
-read -p "Choose language (1. English, 2. 中文): " lang_choice
+printf "Choose language (1. English, 2. 中文): "
+read lang_choice
 case $lang_choice in
     1)
         lang="en"
@@ -19,13 +22,13 @@ esac
 
 install_dependencies() {
     echo "$MSG_INSTALLING_DEPENDENCIES"
-    apt-get update && \
-    apt-get install -y --no-install-recommends \
-        build-essential \
+    apk update && \
+    apk add --no-cache \
+        build-base \
         wget \
-        libgmp-dev \
-        libmpfr-dev \
-        libmpc-dev \
+        gmp-dev \
+        mpfr-dev \
+        mpc1-dev \
         flex \
         bison \
         git \
@@ -33,8 +36,9 @@ install_dependencies() {
 }
 
 install_gcc() {
-    read -p "$MSG_EXECUTE_GCC_INSTALLATION" execute
-    if [ "$execute" == "y" ]; then
+    printf "$MSG_EXECUTE_GCC_INSTALLATION"
+    read execute
+    if [ "$execute" = "y" ]; then
         echo "$MSG_CLONING_GCC"
         mkdir -p /usr/src/gcc && \
         cd /usr/src/gcc
@@ -57,51 +61,54 @@ install_gcc() {
 }
 
 install_python() {
-    read -p "$MSG_EXECUTE_PYTHON_INSTALLATION" execute
-    if [ "$execute" == "y" ]; then
+    printf "$MSG_EXECUTE_PYTHON_INSTALLATION"
+    read execute
+    if [ "$execute" = "y" ]; then
         echo "$MSG_INSTALLING_PYTHON"
-        apt install --no-install-recommends -y python3
-        apt install --no-install-recommends -y python3-pip
+        apk add --no-cache python3 py3-pip
         pip3 install numpy -i https://pypi.tuna.tsinghua.edu.cn/simple
     fi
 }
 
 install_openjdk() {
-    read -p "$MSG_EXECUTE_OPENJDK_INSTALLATION" execute
-    if [ "$execute" == "y" ]; then
+    printf "$MSG_EXECUTE_OPENJDK_INSTALLATION"
+    read execute
+    if [ "$execute" = "y" ]; then
         echo "$MSG_INSTALLING_OPENJDK"
-        apt install --no-install-recommends -y openjdk-17-jdk-headless
+        apk add --no-cache openjdk17
     fi
 }
 
 install_rust() {
-    read -p "$MSG_EXECUTE_RUST_INSTALLATION" execute
-    if [ "$execute" == "y" ]; then
+    printf "$MSG_EXECUTE_RUST_INSTALLATION"
+    read execute
+    if [ "$execute" = "y" ]; then
         echo "$MSG_INSTALLING_RUST"
-        apt install --no-install-recommends -y rustc
+        apk add --no-cache rust cargo
     fi
 }
 
 install_go() {
-    read -p "$MSG_EXECUTE_GO_INSTALLATION" execute
-    if [ "$execute" == "y" ]; then
+    printf "$MSG_EXECUTE_GO_INSTALLATION"
+    read execute
+    if [ "$execute" = "y" ]; then
         echo "$MSG_INSTALLING_GO"
-        apt install --no-install-recommends -y golang-go
+        apk add --no-cache go
     fi
 }
 
 install_fpc() {
-    read -p "$MSG_EXECUTE_FPC_INSTALLATION" execute
-    if [ "$execute" == "y" ]; then
+    printf "$MSG_EXECUTE_FPC_INSTALLATION"
+    read execute
+    if [ "$execute" = "y" ]; then
         echo "$MSG_INSTALLING_FPC"
-        apt install --no-install-recommends -y fp-compiler
+        apk add --no-cache fpc
     fi
 }
 
 install_sandbox() {
     echo "$MSG_INSTALLING_SANDBOX"
-    pkill -9 sandbox
-    # 检查 /usr/bin/sandbox 文件是否存在，如果存在则删除，然后下载最新版本
+    pkill -9 sandbox || true
     if [ -f /usr/bin/sandbox ]; then
         rm /usr/bin/sandbox
     fi
