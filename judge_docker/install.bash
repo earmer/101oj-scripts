@@ -101,6 +101,7 @@ install_fpc() {
 
 install_sandbox() {
     echo "$MSG_INSTALLING_SANDBOX"
+    systemctl stop sandbox
     wget "https://mirror.ghproxy.com/https://github.com/criyle/go-judge/releases/download/v1.8.5/go-judge_1.8.5_linux_amd64" -O /usr/bin/sandbox
     chmod +x /usr/bin/sandbox
     systemctl stop sandbox
