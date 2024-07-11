@@ -101,14 +101,24 @@ install_fpc() {
 
 install_sandbox() {
     echo "$MSG_INSTALLING_SANDBOX"
-    systemctl stop sandbox
+    # 停止 sandbox 服务，如果它正在运行
+    if systemctl is-active --quiet sandbox; then
+        systemctl stop sandbox
+    fi
+    # 检查 /usr/bin/sandbox 文件是否存在，如果存在则删除，然后下载最新版本
+    if [ -f /usr/bin/sandbox ]; then
+        rm /usr/bin/sandbox
+    fi
     wget "https://mirror.ghproxy.com/https://github.com/criyle/go-judge/releases/download/v1.8.5/go-judge_1.8.5_linux_amd64" -O /usr/bin/sandbox
     chmod +x /usr/bin/sandbox
-    systemctl stop sandbox
-    touch /etc/systemd/system/sandbox.service
-    rm -rf /etc/systemd/system/sandbox.service
+    # 检查 /etc/systemd/system/sandbox.service 文件是否存在，如果存在则删除，然后下载最新版本
+    if [ -f /etc/systemd/system/sandbox.service ]; then
+        rm /etc/systemd/system/sandbox.service
+    fi
     wget "https://mirror.ghproxy.com/https://github.com/earmer/101oj-scripts/raw/main/judge_docker/sandbox.service" -O /etc/systemd/system/sandbox.service
+    # 重新加载 systemd 管理器配置
     systemctl daemon-reload
+    # 启用并启动 sandbox 服务
     systemctl enable sandbox
     systemctl start sandbox
 }
